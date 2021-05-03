@@ -52,20 +52,20 @@ class AwesomeDropDown extends StatefulWidget{
     @required this.dropDownList,
     @required this.isPanDown:false,
     this.dropDownBGColor:Colors.white,
-    this.dropDownIconBGColor,
-    this.dropDownOverlayBGColor,
+    this.dropDownIconBGColor:Colors.transparent,
+    this.dropDownOverlayBGColor:Colors.white,
     this.dropDownBorderRadius:0,
     this.dropDownIcon:const Icon(Icons.arrow_drop_down),
     this.onDropDownItemClick,
-    this.isBackPressedOrTouchedOutSide,
+    this.isBackPressedOrTouchedOutSide:false,
     this.dropStateChanged,
-    this.dropDownBottomBorderRadius,
-    this.dropDownTopBorderRadius,
+    this.dropDownBottomBorderRadius:50,
+    this.dropDownTopBorderRadius:50,
     this.selectedItem: '',
     this.selectedItemTextStyle,
     this.dropDownListTextStyle,
-    this.elevation,
-    this.padding,
+    this.elevation:5,
+    this.padding:8,
     this.numOfListItemToShow:4,
   });
 
@@ -132,51 +132,51 @@ class _AwesomeDropDownState extends State<AwesomeDropDown> with WidgetsBindingOb
             widget.isPanDown = false;
           }
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Card(
-              color: widget.dropDownBGColor,
-              margin: EdgeInsets.all(0),
-              shape:  RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(widget.dropDownTopBorderRadius),
-                  topRight: Radius.circular(widget.dropDownTopBorderRadius),
-                  bottomRight: Radius.circular(widget.dropDownBottomBorderRadius),
-                  bottomLeft: Radius.circular(widget.dropDownBottomBorderRadius),),
-              ),
-              elevation: widget.elevation,
-              child: Container(
-                padding: EdgeInsets.all(widget.padding),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 8,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: Text(
-                          widget.selectedItem == ''?widget.dropDownList[0]:widget.selectedItem,
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor>1.5?1.5:MediaQuery.of(context).textScaleFactor,
-                          style: widget.selectedItemTextStyle,
-                        ),
-                      ),
+        child: Card(
+          elevation: widget.elevation,
+          color: widget.dropDownBGColor,
+          margin: const EdgeInsets.only(top: 10.0, left: 10.0,right: 10.0,bottom: 0),
+          shape:  RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(widget.dropDownTopBorderRadius),
+              topRight: Radius.circular(widget.dropDownTopBorderRadius),
+              bottomRight: Radius.circular(widget.dropDownBottomBorderRadius),
+              bottomLeft: Radius.circular(widget.dropDownBottomBorderRadius),),
+          ),
+          child: Container(
+            // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            padding: EdgeInsets.all(widget.padding),
+            height: 50,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 8,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Text(
+                      widget.selectedItem == ''? widget.dropDownList[0]:widget.selectedItem,
+                      textScaleFactor: MediaQuery.of(context).textScaleFactor>1.5?1.5:MediaQuery.of(context).textScaleFactor,
+                      style: widget.selectedItemTextStyle != null? widget.selectedItemTextStyle :TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal),
                     ),
-                    Spacer(),
-                    Flexible(
-                      flex: 3,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          margin: EdgeInsets.only(right: 5),
-                          color: (widget.dropDownIconBGColor !=null)?widget.dropDownIconBGColor:Colors.transparent,
-                          child: widget.dropDownIcon,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                Spacer(),
+                Flexible(
+                  flex: 3,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 5),
+                      color: (widget.dropDownIconBGColor !=null)?widget.dropDownIconBGColor:Colors.transparent,
+                      child: widget.dropDownIcon,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -215,6 +215,7 @@ class _AwesomeDropDownState extends State<AwesomeDropDown> with WidgetsBindingOb
         (overlayHeight > fourItemsHeight)?fourItemsHeight+MediaQuery.of(context).padding.top:
         overlayHeight+MediaQuery.of(context).padding.top,
         child: Container(
+          margin: const EdgeInsets.only(left: 10.0,right: 8.0,bottom: 10.0),
           transform: Matrix4.translationValues(0, -MediaQuery.of(context).padding.top, 0),
           child: SafeArea(
             child: DropDownOverlay(
@@ -224,7 +225,10 @@ class _AwesomeDropDownState extends State<AwesomeDropDown> with WidgetsBindingOb
               widget.dropDownOverlayBGColor:widget.dropDownBGColor,
               dropDownItemClick: _dropDownItemClickListener,
               dropDownBorderRadius: widget.dropDownBottomBorderRadius,
-              dropDownListTextStyle: widget.dropDownListTextStyle,
+              dropDownListTextStyle: widget.dropDownListTextStyle != null? widget.dropDownListTextStyle : TextStyle(
+                  color: Colors.grey,
+                  fontSize: 15,
+                  backgroundColor: Colors.transparent),
               onOverlayOpen: (listItemHeight){
                 setState(() {
                   if(listItemHeight != null && listItemHeight > 0

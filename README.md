@@ -1,14 +1,80 @@
-# awesome_dropdown
+# Awesome DropDown
 
-A new Flutter package.
+A customizable drop-down library that handles all the touch and clicks events, including iOS and mobile back-pressed callbacks.
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Add following dependency in pubspec.yaml file. And add this import to your file.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```bash
+awesome_dropdown:^0.0.1
+
+import 'package:awesome_dropdown/awesome_dropdown.dart';
+```
+
+## Quick Start
+
+```python
+Add AwesomeDropdown to the widget tree
+
+AwesomeDropDown(
+                  isPanDown: _isPanDown,
+                  dropDownList: _list,
+                  dropDownIcon: Icon(Icons.arrow_drop_down, color: Colors.grey, size: 23,),
+                  selectedItem: _selectedItem,
+                  onDropDownItemClick: (selectedItem) {
+                    _selectedItem = selectedItem;
+                  },
+                  dropStateChanged: (isOpened) {
+                    _isDropDownOpened = isOpened;
+                    if (!isOpened) {
+                      _isBackPressedOrTouchedOutSide = false;                    }
+                  },
+                ),                ​
+```
+
+## Custom Body
+
+```python
+
+AwesomeDropDown(
+                   ​isPanDown: _isPanDown,
+                   ​isBackPressedOrTouchedOutSide:
+                   ​_isBackPressedOrTouchedOutSide,
+                   ​dropDownBGColor: Colors.white,
+                   ​padding: 8,
+                   ​dropDownIcon: Icon(Icons.arrow_drop_down, color: Colors.grey, size: 23,),
+                   ​elevation: 5,
+                   ​dropDownBorderRadius: 10,
+                   ​dropDownTopBorderRadius: 50,
+                   ​dropDownBottomBorderRadius: 50,
+                   ​dropDownIconBGColor: Colors.transparent,
+                   ​dropDownList: _list,
+                   ​selectedItem: _selectedItem,
+                   ​numOfListItemToShow: 4,
+                   ​selectedItemTextStyle: TextStyle(
+                       ​color: Colors.black,
+                       ​fontSize: 16,
+                       ​fontWeight: FontWeight.normal),
+                   ​dropDownListTextStyle: TextStyle(
+                       ​color: Colors.grey,
+                       ​fontSize: 15,
+                       ​backgroundColor: Colors.transparent),
+                   ​onDropDownItemClick: (selectedItem) {
+                     ​_selectedItem = selectedItem;
+                   ​},
+                   ​dropStateChanged: (isOpened) {
+                     ​_isDropDownOpened = isOpened;
+                     ​if (!isOpened) {
+                       ​_isBackPressedOrTouchedOutSide = false;
+                     ​}
+                   ​},
+                 ​),
+```
+## Screenshot
+![Awesome DropDown](screenshot/awesome_dropDown.gif)
+## Developer Team
+Faiza Farooqui & my team members (Hina Hussain, Kamran Khan, Abdul Sattar)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/
