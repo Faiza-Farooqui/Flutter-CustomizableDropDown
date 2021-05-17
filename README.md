@@ -7,7 +7,7 @@ A customizable drop-down library that handles all the touch and clicks events, i
 Add following dependency in pubspec.yaml file. And add this import to your file.
 
 ```bash
-awesome_dropdown:^0.0.1
+awesome_dropdown:^0.0.2
 
 import 'package:awesome_dropdown/awesome_dropdown.dart';
 ```

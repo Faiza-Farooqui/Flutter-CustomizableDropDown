@@ -1,3 +1,3 @@
-## [0.0.1] - Release Sunday, 02 May 2021 .
+## [0.0.2] - Changed readme Monday, 17 May 2021 .
 
-* A cusgit add README.mdtomizable drop-down library that handles all the touch and clicks events, including iOS and mobile back-pressed callbacks.
+* A customizable drop-down library that handles all the touch and clicks events, including iOS and mobile back-pressed callbacks.
