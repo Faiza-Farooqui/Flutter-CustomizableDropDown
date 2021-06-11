@@ -72,7 +72,8 @@ AwesomeDropDown(
                  ​),
 ```
 ## Screenshot
-![awesome_dropDown](https://user-images.githubusercontent.com/36657067/116820134-420b2400-ab28-11eb-826a-caa69072ba6b.gif)
+<img height="480px" src="https://user-images.githubusercontent.com/36657067/116820134-420b2400-ab28-11eb-826a-caa69072ba6b.gif">
+
 ## Developer Team
 Faiza Farooqui & my team members (Hina Hussain, Kamran Khan, Abdul Sattar)
 
