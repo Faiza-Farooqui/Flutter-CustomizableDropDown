@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_dropdown/awesome_dropdown.dart';
 
-void main(){
+void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,18 +18,22 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 ///==================================== EXAMPLE 1 =================================================================
 class SimpleDropDown extends StatefulWidget {
   @override
   _SimpleDropDownState createState() => _SimpleDropDownState();
 }
+
 class _SimpleDropDownState extends State<SimpleDropDown> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("Awesome DropDown"),),
+      appBar: AppBar(
+        title: Text("Awesome DropDown"),
+      ),
       body: AwesomeDropDown(
-        dropDownList: ["Abc","DEF","GHI","JKL","MNO","PQR"],
+        dropDownList: ["Abc", "DEF", "GHI", "JKL", "MNO", "PQR"],
       ),
     );
   }
@@ -38,21 +43,22 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
 
 class DropDownWithPanDownAndDrawer extends StatefulWidget {
   @override
-  _DropDownWithPanDownAndDrawerState createState() => _DropDownWithPanDownAndDrawerState();
+  _DropDownWithPanDownAndDrawerState createState() =>
+      _DropDownWithPanDownAndDrawerState();
 }
 
-class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDrawer> {
-
+class _DropDownWithPanDownAndDrawerState
+    extends State<DropDownWithPanDownAndDrawer> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isBackPressedOrTouchedOutSide = false,
       _isDropDownOpened = false,
       _isPanDown = false;
-  List<String> _list;
+  late List<String> _list;
   String _selectedItem = '';
 
   @override
   void initState() {
-    _list = ["Abc","DEF","GHI","JKL","MNO","PQR"];
+    _list = ["Abc", "DEF", "GHI", "JKL", "MNO", "PQR"];
     _selectedItem = 'Select Item';
     super.initState();
   }
@@ -70,6 +76,7 @@ class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDra
       child: Scaffold(
         backgroundColor: Colors.white,
         key: _scaffoldKey,
+
         /// I have maintain open and close state of drop down with the drawer
         /// if drop down is opened and user wants to open Drawer, it will first close the drop down then open the drawer
         endDrawer: Drawer(
@@ -84,13 +91,11 @@ class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDra
               ),
               ListTile(
                 title: Text('Item 1'),
-                onTap: () {
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Text('Item 2'),
-                onTap: () {
-                },
+                onTap: () {},
               ),
             ],
           ),
@@ -104,21 +109,27 @@ class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDra
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left:60),
+                      margin: EdgeInsets.only(left: 60),
                       child: Text('Awesome DropDown',
-                          style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold)),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold)),
                     ),
                     Container(
                         margin: EdgeInsets.only(right: 8),
-                        child: IconButton(icon: Icon(Icons.menu,size: 30,color: Colors.blueAccent,),
-                            onPressed:(){
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.menu,
+                              size: 30,
+                              color: Colors.blueAccent,
+                            ),
+                            onPressed: () {
                               _onDrawerBtnPressed();
-                            }//_onDrawerBtnPressed
-                        )
-                    )
+                            } //_onDrawerBtnPressed
+                            ))
                   ],
-                )
-            ),
+                )),
           ),
         ),
         body: Container(
@@ -127,8 +138,7 @@ class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDra
           child: AwesomeDropDown(
             isPanDown: _isPanDown,
             dropDownList: _list,
-            isBackPressedOrTouchedOutSide:
-            _isBackPressedOrTouchedOutSide,
+            isBackPressedOrTouchedOutSide: _isBackPressedOrTouchedOutSide,
             selectedItem: _selectedItem,
             onDropDownItemClick: (selectedItem) {
               _selectedItem = selectedItem;
@@ -153,14 +163,15 @@ class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDra
       });
     }
   }
+
   /// this func will call on DrawerIconPressed, it closes the dropDown if open and then open the drawer
-  void _onDrawerBtnPressed(){
+  void _onDrawerBtnPressed() {
     if (_isDropDownOpened) {
       setState(() {
         _isBackPressedOrTouchedOutSide = true;
       });
-    }else{
-      _scaffoldKey.currentState.openEndDrawer();
+    } else {
+      _scaffoldKey.currentState!.openEndDrawer();
       FocusScope.of(context).requestFocus(FocusNode());
     }
   }
@@ -170,20 +181,22 @@ class _DropDownWithPanDownAndDrawerState extends State<DropDownWithPanDownAndDra
 
 class DropDownWithiOsBackIcon extends StatefulWidget {
   @override
-  _DropDownWithiOsBackIconState createState() => _DropDownWithiOsBackIconState();
+  _DropDownWithiOsBackIconState createState() =>
+      _DropDownWithiOsBackIconState();
 }
 
 class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isBackPressedOrTouchedOutSide = false,
       _isDropDownOpened = false,
-      _isPanDown = false, _navigateToPreviousScreenOnIOSBackPress = true;
-  List<String> _list;
+      _isPanDown = false,
+      _navigateToPreviousScreenOnIOSBackPress = true;
+  late List<String> _list;
   String _selectedItem = '';
 
   @override
   void initState() {
-    _list = ["Abc","DEF","GHI","JKL","MNO","PQR"];
+    _list = ["Abc", "DEF", "GHI", "JKL", "MNO", "PQR"];
     _selectedItem = 'Select Item';
     super.initState();
   }
@@ -199,6 +212,7 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
       child: Scaffold(
         backgroundColor: Colors.white,
         key: _scaffoldKey,
+
         /// in appBar I have added iOS back button and open and close state of drop down is work like a charm when iOS back button pressed
         appBar: PreferredSize(
           preferredSize: AppBar().preferredSize,
@@ -211,22 +225,29 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
                     SizedBox(
                       width: 30,
                       child: Container(
-                          margin: EdgeInsets.only(left: 8,),
+                          margin: EdgeInsets.only(
+                            left: 8,
+                          ),
                           child: IconButton(
                             color: Colors.black,
                             icon: Icon(
                               Icons.arrow_back_ios,
                             ),
                             onPressed: _onWillPop,
-                          )),),
+                          )),
+                    ),
                     Container(
-                      margin: EdgeInsets.only(right: 60,),
+                      margin: EdgeInsets.only(
+                        right: 60,
+                      ),
                       child: Text('Awesome DropDown',
-                          style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold)),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold)),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
         ),
         body: Column(
@@ -238,8 +259,7 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
               child: AwesomeDropDown(
                 isPanDown: _isPanDown,
                 dropDownList: _list,
-                isBackPressedOrTouchedOutSide:
-                _isBackPressedOrTouchedOutSide,
+                isBackPressedOrTouchedOutSide: _isBackPressedOrTouchedOutSide,
                 selectedItem: _selectedItem,
                 onDropDownItemClick: (selectedItem) {
                   _selectedItem = selectedItem;
@@ -258,7 +278,6 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
     );
   }
 
-
   /// this func is used to close dropDown (if open) when you tap or pandown anywhere in the screen
   /// this method is also used for iOS backPressed as mentioned in gif
   void _removeFocus() {
@@ -269,10 +288,11 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
       _navigateToPreviousScreenOnIOSBackPress = false;
     }
   }
+
   /// this func will call on mob backPressed and iOS back pressed
   /// if dropdown opens it will close the dropdown else it will pop the screen
   Future<bool> _onWillPop() {
-    if (_scaffoldKey.currentState.isEndDrawerOpen) {
+    if (_scaffoldKey.currentState!.isEndDrawerOpen) {
       Navigator.of(context).pop();
       return Future.value(false);
     } else {
@@ -280,13 +300,13 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
         setState(() {
           _isBackPressedOrTouchedOutSide = true;
         });
-        FocusManager.instance.primaryFocus.unfocus();
+        FocusManager.instance.primaryFocus!.unfocus();
         return Future.value(false);
       } else {
-        if(_navigateToPreviousScreenOnIOSBackPress){
+        if (_navigateToPreviousScreenOnIOSBackPress) {
           Navigator.of(context).pop();
           return Future.value(true);
-        }else{
+        } else {
           _navigateToPreviousScreenOnIOSBackPress = true;
           return Future.value(false);
         }
@@ -294,24 +314,28 @@ class _DropDownWithiOsBackIconState extends State<DropDownWithiOsBackIcon> {
     }
   }
 }
+
 ///==================================== EXAMPLE 4 =================================================================
 
 class FullyFunctionalAwesomeDropDown extends StatefulWidget {
   @override
-  _FullyFunctionalAwesomeDropDownState createState() => _FullyFunctionalAwesomeDropDownState();
+  _FullyFunctionalAwesomeDropDownState createState() =>
+      _FullyFunctionalAwesomeDropDownState();
 }
 
-class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeDropDown> {
+class _FullyFunctionalAwesomeDropDownState
+    extends State<FullyFunctionalAwesomeDropDown> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isBackPressedOrTouchedOutSide = false,
       _isDropDownOpened = false,
-      _isPanDown = false, _navigateToPreviousScreenOnIOSBackPress = true;
-  List<String> _list;
+      _isPanDown = false,
+      _navigateToPreviousScreenOnIOSBackPress = true;
+  late List<String> _list;
   String _selectedItem = 'Select Country';
 
   @override
   void initState() {
-    _list = ["Abc","DEF","GHI","JKL","MNO","PQR"];
+    _list = ["Abc", "DEF", "GHI", "JKL", "MNO", "PQR"];
     super.initState();
   }
 
@@ -319,6 +343,7 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: _onWillPop,
+
         /// user has to wrap it's main body to GestureDetector so all the implemented functionalities would be work
         /// perfectly. this is used to close the drop down on [out side touch, ios back pressed, drawer open, pan down, scrolling]
         child: GestureDetector(
@@ -330,6 +355,7 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
           child: Scaffold(
             backgroundColor: Colors.white,
             key: _scaffoldKey,
+
             /// I have maintain open and close state of drop down with the drawer
             /// if drop down is opened and user wants to open Drawer, it will first close the drop dwon then open the drawer
             endDrawer: Drawer(
@@ -344,17 +370,16 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
                   ),
                   ListTile(
                     title: Text('Item 1'),
-                    onTap: () {
-                    },
+                    onTap: () {},
                   ),
                   ListTile(
                     title: Text('Item 2'),
-                    onTap: () {
-                    },
+                    onTap: () {},
                   ),
                 ],
               ),
             ),
+
             /// in appBar I have added iOS back button and open and close state of drop down is work like a charm when iOS back button
             /// pressed
             appBar: PreferredSize(
@@ -368,30 +393,39 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
                         SizedBox(
                           width: 30,
                           child: Container(
-                              margin: EdgeInsets.only(left: 8,),
+                              margin: EdgeInsets.only(
+                                left: 8,
+                              ),
                               child: IconButton(
                                 color: Colors.black,
                                 icon: Icon(
                                   Icons.arrow_back_ios,
                                 ),
                                 onPressed: _onWillPop,
-                              )),),
+                              )),
+                        ),
                         Text('Awesome DropDown',
                             // textScaleFactor: 1.0,
-                            style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold)),
                         Container(
                           child: Padding(
                               padding: EdgeInsets.only(right: 8),
-                              child: IconButton(icon: Icon(Icons.menu,size: 30,color: Colors.blueAccent,),
-                                  onPressed:(){
+                              child: IconButton(
+                                  icon: Icon(
+                                    Icons.menu,
+                                    size: 30,
+                                    color: Colors.blueAccent,
+                                  ),
+                                  onPressed: () {
                                     _onDrawerBtnPressed();
-                                  }//_onDrawerBtnPressed
-                              )
-                          ),
+                                  } //_onDrawerBtnPressed
+                                  )),
                         )
                       ],
-                    )
-                ),
+                    )),
               ),
             ),
             body: Column(
@@ -403,10 +437,14 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
                   child: AwesomeDropDown(
                     isPanDown: _isPanDown,
                     isBackPressedOrTouchedOutSide:
-                    _isBackPressedOrTouchedOutSide,
+                        _isBackPressedOrTouchedOutSide,
                     dropDownBGColor: Colors.white,
                     padding: 8,
-                    dropDownIcon: Icon(Icons.arrow_drop_down, color: Colors.grey, size: 23,),
+                    dropDownIcon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.grey,
+                      size: 23,
+                    ),
                     elevation: 5,
                     dropDownBorderRadius: 10,
                     dropDownTopBorderRadius: 50,
@@ -437,9 +475,9 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
               ],
             ),
           ),
-        )
-    );
+        ));
   }
+
   /// this func is used to close dropDown (if open) when you tap or pandown anywhere in the screen
   /// this method is also used for iOS backPressed as mentioned in gif
   void _removeFocus() {
@@ -450,10 +488,11 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
       _navigateToPreviousScreenOnIOSBackPress = false;
     }
   }
+
   /// this func will call on mob backPressed and on iOS back pressed
   /// if dropdown opens it will close the dropdown else it will pop the screen
   Future<bool> _onWillPop() {
-    if (_scaffoldKey.currentState.isEndDrawerOpen) {
+    if (_scaffoldKey.currentState!.isEndDrawerOpen) {
       Navigator.of(context).pop();
       return Future.value(false);
     } else {
@@ -461,29 +500,29 @@ class _FullyFunctionalAwesomeDropDownState extends State<FullyFunctionalAwesomeD
         setState(() {
           _isBackPressedOrTouchedOutSide = true;
         });
-        FocusManager.instance.primaryFocus.unfocus();
+        FocusManager.instance.primaryFocus!.unfocus();
         return Future.value(false);
       } else {
-        if(_navigateToPreviousScreenOnIOSBackPress){
+        if (_navigateToPreviousScreenOnIOSBackPress) {
           Navigator.of(context).pop();
           return Future.value(true);
-        }else{
+        } else {
           _navigateToPreviousScreenOnIOSBackPress = true;
           return Future.value(false);
         }
       }
     }
   }
+
   /// this func will call on DrawerIconPressed, it closes the dropDown if open and then open the drawer
-  void _onDrawerBtnPressed(){
+  void _onDrawerBtnPressed() {
     if (_isDropDownOpened) {
       setState(() {
         _isBackPressedOrTouchedOutSide = true;
       });
-    }else{
-      _scaffoldKey.currentState.openEndDrawer();
+    } else {
+      _scaffoldKey.currentState!.openEndDrawer();
       FocusScope.of(context).requestFocus(FocusNode());
     }
   }
 }
-

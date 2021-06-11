@@ -10,9 +10,9 @@ const Duration _kScrollbarTimeToFade = Duration(milliseconds: 600);
 
 class CustomScrollbar extends StatefulWidget {
   const CustomScrollbar({
-    Key key,
-    @required this.child,
-    this.controller,
+    Key? key,
+    required this.child,
+    required this.controller,
     this.isAlwaysShown = false,
     this.scrollbarThickness: 2.0,
   }) : super(key: key);
@@ -30,13 +30,13 @@ class CustomScrollbar extends StatefulWidget {
 
 class _CustomScrollbarState extends State<CustomScrollbar>
     with TickerProviderStateMixin {
-  ScrollbarPainter _materialPainter;
-  TextDirection _textDirection;
-  Color _themeColor;
-  bool _useCupertinoScrollbar;
-  AnimationController _fadeoutAnimationController;
-  Animation<double> _fadeoutOpacityAnimation;
-  Timer _fadeoutTimer;
+  ScrollbarPainter? _materialPainter;
+  TextDirection? _textDirection;
+  Color? _themeColor;
+  bool? _useCupertinoScrollbar;
+  late AnimationController _fadeoutAnimationController;
+  late Animation<double>? _fadeoutOpacityAnimation;
+  Timer? _fadeoutTimer;
 
   @override
   void initState() {
@@ -77,7 +77,7 @@ class _CustomScrollbarState extends State<CustomScrollbar>
         _textDirection = Directionality.of(context);
         _materialPainter = _buildMaterialScrollbarPainter();
         _useCupertinoScrollbar = false;
-        WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
+        WidgetsBinding.instance!.addPostFrameCallback((Duration duration) {
           if (widget.isAlwaysShown) {
             assert(widget.controller != null);
             // Wait one frame and cause an empty scroll event.  This allows the
@@ -106,10 +106,10 @@ class _CustomScrollbarState extends State<CustomScrollbar>
 
   ScrollbarPainter _buildMaterialScrollbarPainter() {
     return ScrollbarPainter(
-      color: _themeColor,
+      color: _themeColor!,
       textDirection: _textDirection,
       thickness: widget.scrollbarThickness,
-      fadeoutOpacityAnimation: _fadeoutOpacityAnimation,
+      fadeoutOpacityAnimation: _fadeoutOpacityAnimation!,
       padding: MediaQuery.of(context).padding,
     );
   }
@@ -122,14 +122,14 @@ class _CustomScrollbarState extends State<CustomScrollbar>
 
     // iOS sub-delegates to the CupertinoScrollbar instead and doesn't handle
     // scroll notifications here.
-    if (!_useCupertinoScrollbar &&
+    if (!_useCupertinoScrollbar! &&
         (notification is ScrollUpdateNotification ||
             notification is OverscrollNotification)) {
       if (_fadeoutAnimationController.status != AnimationStatus.forward) {
         _fadeoutAnimationController.forward();
       }
 
-      _materialPainter.update(
+      _materialPainter!.update(
         notification.metrics,
         notification.metrics.axisDirection,
       );
@@ -154,7 +154,7 @@ class _CustomScrollbarState extends State<CustomScrollbar>
 
   @override
   Widget build(BuildContext context) {
-    if (_useCupertinoScrollbar) {
+    if (_useCupertinoScrollbar!) {
       return CupertinoScrollbar(
         child: widget.child,
         isAlwaysShown: widget.isAlwaysShown,
