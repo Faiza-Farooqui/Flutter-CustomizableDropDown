@@ -77,4 +77,4 @@ AwesomeDropDown(
 Faiza Farooqui & my team members (Hina Hussain, Kamran Khan, Abdul Sattar)
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/
+[MIT](https://choosealicense.com/licenses/mit/)
