@@ -7,7 +7,7 @@ A customizable drop-down library that handles all the touch and clicks events, i
 Add following dependency in pubspec.yaml file. And add this import to your file.
 
 ```bash
-awesome_dropdown:^0.0.3
+awesome_dropdown:^0.0.4
 
 import 'package:awesome_dropdown/awesome_dropdown.dart';
 ```
@@ -42,6 +42,7 @@ AwesomeDropDown(
                    ​isBackPressedOrTouchedOutSide:
                    ​_isBackPressedOrTouchedOutSide,
                    ​dropDownBGColor: Colors.white,
+                    dropDownOverlayBGColor: Colors.transparent,
                    ​padding: 8,
                    ​dropDownIcon: Icon(Icons.arrow_drop_down, color: Colors.grey, size: 23,),
                    ​elevation: 5,

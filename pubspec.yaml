@@ -1,6 +1,6 @@
 name: awesome_dropdown
 description: A simple dropdown library with custom style and control all touch events.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/Faiza-Farooqui/Flutter-CustomizableDropDown
 
 environment:

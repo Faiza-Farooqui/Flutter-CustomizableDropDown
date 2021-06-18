@@ -438,7 +438,6 @@ class _FullyFunctionalAwesomeDropDownState
                     isPanDown: _isPanDown,
                     isBackPressedOrTouchedOutSide:
                         _isBackPressedOrTouchedOutSide,
-                    dropDownBGColor: Colors.white,
                     padding: 8,
                     dropDownIcon: Icon(
                       Icons.arrow_drop_down,
@@ -450,6 +449,8 @@ class _FullyFunctionalAwesomeDropDownState
                     dropDownTopBorderRadius: 50,
                     dropDownBottomBorderRadius: 50,
                     dropDownIconBGColor: Colors.transparent,
+                    dropDownOverlayBGColor: Colors.transparent,
+                    dropDownBGColor: Colors.white,
                     dropDownList: _list,
                     selectedItem: _selectedItem,
                     numOfListItemToShow: 4,

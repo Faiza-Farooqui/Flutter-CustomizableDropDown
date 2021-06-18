@@ -396,6 +396,7 @@ class DropDownOverlay extends StatelessWidget {
             bottomLeft: Radius.circular(10.0),
             bottomRight: Radius.circular(10.0)),
       ),
+      color: overlayBGColor,
       child: Container(
         transform: Matrix4.translationValues(0, -2.5, 0),
         padding: EdgeInsets.only(top: 10, bottom: 5),
@@ -412,7 +413,7 @@ class DropDownOverlay extends StatelessWidget {
                 spreadRadius: 0,
                 offset: Offset(1, 3))
           ],
-          color: Colors.transparent,
+          color: overlayBGColor,
         ),
 
         /// this scrollBar is added here to scroll the list is there are a large numbers of items
