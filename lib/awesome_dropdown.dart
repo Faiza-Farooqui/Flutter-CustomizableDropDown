@@ -172,18 +172,19 @@ class _AwesomeDropDownState extends State<AwesomeDropDown>
                 Expanded(
                   flex: 8,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Text(
-                      widget.selectedItem == ''
-                          ? widget.dropDownList[0]
-                          : widget.selectedItem,
-                      textScaleFactor:
-                          MediaQuery.of(context).textScaleFactor > 1.5
-                              ? 1.5
-                              : MediaQuery.of(context).textScaleFactor,
-                      style: widget.selectedItemTextStyle,
-                    ),
-                  ),
+                      padding: EdgeInsets.only(left: 8),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          widget.selectedItem == ''
+                              ? widget.dropDownList[0]
+                              : widget.selectedItem,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor > 1.5
+                                  ? 1.5
+                                  : MediaQuery.of(context).textScaleFactor,
+                          style: widget.selectedItemTextStyle,
+                        ),
+                      )),
                 ),
                 Spacer(),
                 Flexible(
