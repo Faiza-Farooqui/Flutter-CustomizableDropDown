@@ -106,7 +106,7 @@ class _AwesomeDropDownState extends State<AwesomeDropDown>
   @override
   void initState() {
     _gestureDetectorGlobalKey = GlobalKey();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -217,7 +217,7 @@ class _AwesomeDropDownState extends State<AwesomeDropDown>
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -293,7 +293,7 @@ class _AwesomeDropDownState extends State<AwesomeDropDown>
     } else {
       findDropdownData();
       _floatingDropdown = _createFloatingDropdown(widget.numOfListItemToShow);
-      Overlay.of(context)!.insert(_floatingDropdown!);
+      Overlay.of(context).insert(_floatingDropdown!);
       initialTopBorderRadius = widget.dropDownTopBorderRadius;
       initialBottomBorderRadius = widget.dropDownBottomBorderRadius;
       widget.dropDownBottomBorderRadius = 0.0;
@@ -318,7 +318,7 @@ class _AwesomeDropDownState extends State<AwesomeDropDown>
       _openAndCloseDrawer();
       _openAndCloseDrawer();
     }
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _orientation = MediaQuery.of(context).orientation;
       if (_isDropdownOpened) {
         _openAndCloseDrawer();
@@ -379,7 +379,7 @@ class DropDownOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (onOverlayOpen != null) {
         onOverlayOpen(getListItemHeight());
       }
