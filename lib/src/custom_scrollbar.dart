@@ -77,7 +77,7 @@ class _CustomScrollbarState extends State<CustomScrollbar>
         _textDirection = Directionality.of(context);
         _materialPainter = _buildMaterialScrollbarPainter();
         _useCupertinoScrollbar = false;
-        WidgetsBinding.instance!.addPostFrameCallback((Duration duration) {
+        WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
           if (widget.isAlwaysShown) {
             assert(widget.controller != null);
             // Wait one frame and cause an empty scroll event.  This allows the
@@ -157,7 +157,7 @@ class _CustomScrollbarState extends State<CustomScrollbar>
     if (_useCupertinoScrollbar!) {
       return CupertinoScrollbar(
         child: widget.child,
-        isAlwaysShown: widget.isAlwaysShown,
+        // isAlwaysShown: widget.isAlwaysShown,
         controller: widget.controller,
       );
     }
